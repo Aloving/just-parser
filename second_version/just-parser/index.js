@@ -1,5 +1,4 @@
 import url from 'url';
-import classOf from './helpers/classof';
 
 class JustParser {
   /**
