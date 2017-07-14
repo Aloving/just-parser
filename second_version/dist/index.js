@@ -23,6 +23,20 @@ var JustParser = function () {
     _classCallCheck(this, JustParser);
 
     this.userUrl = userUrl;
+
+    /**
+      * @parsedUrl = {
+      *  protocol: {String},
+      *  host: {String}
+      *  port: {String|null}
+      *  hostname: {String}
+      *  hash: {Strin|null}
+      *  query: {Object}
+      *  pathname: {String}
+      *  path: {String}
+      * }
+      *{@parseUrl|null}
+    */
     this.parsedUrl = null;
   }
 

@@ -7,6 +7,20 @@ class JustParser {
   */
   constructor(userUrl) {
     this.userUrl = userUrl;
+
+    /**
+      * @parsedUrl = {
+      *  protocol: {String},
+      *  host: {String}
+      *  port: {String|null}
+      *  hostname: {String}
+      *  hash: {Strin|null}
+      *  query: {Object}
+      *  pathname: {String}
+      *  path: {String}
+      * }
+      *{@parseUrl|null}
+    */
     this.parsedUrl = null;
   }
 
@@ -81,7 +95,9 @@ class JustParser {
       case 'UPDATE':
       case 'ADD':
         if (Array.isArray(query)) {
-          throw new Error('a query with ADD or UPDATE action must be an object');
+          throw new Error(
+            'a query with ADD or UPDATE action must be an object',
+          );
         }
         Object.keys(query).forEach(qr => (_parsedUrl.query[qr] = query[qr]));
         this.parsedUrl = _parsedUrl;
