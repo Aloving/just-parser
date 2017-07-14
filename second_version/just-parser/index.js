@@ -81,7 +81,7 @@ class JustParser {
       case 'UPDATE':
       case 'ADD':
         if (Array.isArray(query)) {
-          throw new Error('a query with REMOVE action must be an object');
+          throw new Error('a query with ADD or UPDATE action must be an object');
         }
         Object.keys(query).forEach(qr => (_parsedUrl.query[qr] = query[qr]));
         this.parsedUrl = _parsedUrl;

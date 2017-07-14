@@ -103,7 +103,7 @@ var JustParser = function () {
         case 'UPDATE':
         case 'ADD':
           if (Array.isArray(query)) {
-            throw new Error('a query with REMOVE action must be an object');
+            throw new Error('a query with ADD or UPDATE action must be an object');
           }
           Object.keys(query).forEach(function (qr) {
             return _parsedUrl.query[qr] = query[qr];
