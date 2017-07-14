@@ -8,6 +8,14 @@ const secondParser = new JustParser(
   'https://github.com:30/foo/bar?name=ryan&lname=smith',
 );
 
+const thirdParser = new JustParser(
+  'https://github.com:30/foo/bar?name=ryan&lname=smith',
+);
+
+const fourthParser = new JustParser(
+  'https://github.com:30/foo/bar?name=ryan&lname=smith',
+);
+
 const firstParse = firstParser
   .parseURL()
   .hashAction('ADD', 'hash')
@@ -23,5 +31,16 @@ const firstParse = firstParser
 
 const secondParse = secondParser.parseURL().parsedUrl;
 
+const thirdParse = thirdParser.hashAction('ADD', 'something').parsedUrl;
+
+const fourthParse = fourthParser
+  .queryAction('ADD', {
+    name: 'Bruce',
+    age: '60',
+  })
+  .toString();
+
 console.log(firstParse);
 console.log(secondParse);
+console.log(thirdParse);
+console.log(fourthParse);

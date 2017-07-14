@@ -55,22 +55,21 @@ var JustParser = function () {
   }, {
     key: 'hashAction',
     value: function hashAction(action, hash) {
-      var _parsedUrl = this.parsedUrl || this.parseURL().parsedUrl;
+      var _parsedUrl = this.parsedUrl ? Object.assign({}, this.parsedUrl) : Object.assign({}, this.parseURL().parsedUrl);
 
       switch (action) {
         case 'DELETE':
           _parsedUrl.hash = null;
+          this.parsedUrl = _parsedUrl;
           return this;
         case 'UPDATE':
         case 'ADD':
           _parsedUrl.hash = hash;
+          this.parsedUrl = _parsedUrl;
           return this;
         default:
           return this;
       }
-
-      _parsedUrl.hash = hash;
-      return _parsedUrl;
     }
 
     /**
@@ -83,7 +82,7 @@ var JustParser = function () {
   }, {
     key: 'queryAction',
     value: function queryAction(action, query) {
-      var _parsedUrl = Object.assign({}, this.parsedUrl);
+      var _parsedUrl = this.parsedUrl ? Object.assign({}, this.parsedUrl) : Object.assign({}, this.parseURL().parsedUrl);
 
       // in case there is something else in query
       if (!query) {

@@ -32,22 +32,23 @@ class JustParser {
   * @return {class @JustParser}
   */
   hashAction(action, hash) {
-    const _parsedUrl = this.parsedUrl || this.parseURL().parsedUrl;
+    const _parsedUrl = this.parsedUrl
+      ? Object.assign({}, this.parsedUrl)
+      : Object.assign({}, this.parseURL().parsedUrl);
 
     switch (action) {
       case 'DELETE':
         _parsedUrl.hash = null;
+        this.parsedUrl = _parsedUrl;
         return this;
       case 'UPDATE':
       case 'ADD':
         _parsedUrl.hash = hash;
+        this.parsedUrl = _parsedUrl;
         return this;
       default:
         return this;
     }
-
-    _parsedUrl.hash = hash;
-    return _parsedUrl;
   }
 
   /**
@@ -57,7 +58,9 @@ class JustParser {
   * @return {class @JustParser}
   */
   queryAction(action, query) {
-    const _parsedUrl = Object.assign({}, this.parsedUrl);
+    const _parsedUrl = this.parsedUrl
+      ? Object.assign({}, this.parsedUrl)
+      : Object.assign({}, this.parseURL().parsedUrl);
 
     // in case there is something else in query
     if (!query) {
